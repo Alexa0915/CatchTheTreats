@@ -967,7 +967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 400}
+  m_AnchoredPosition: {x: 0, y: 500}
   m_SizeDelta: {x: 1000, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &698057662
@@ -1597,8 +1597,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: 0, y: 50}
+  m_SizeDelta: {x: 400, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1253908127
 MonoBehaviour:
@@ -1750,8 +1750,12 @@ MonoBehaviour:
   - {fileID: 4377085351949008559, guid: f43831f9628bacb478acf8a2bb64390a, type: 3}
   - {fileID: 3298319732759886681, guid: 7f6a8cb4ab5f54e4ebf34a827383fc15, type: 3}
   - {fileID: 4377085351949008559, guid: 1b3c5975ddfddfc428524185233c04c2, type: 3}
-  interval: 1.2
-  badChance: 0.25
+  startInterval: 1.2
+  startBadChance: 0.25
+  minInterval: 0.7
+  maxBadChance: 0.5
+  maxSpeedMultiplier: 1.8
+  timeToMax: 60
 --- !u!1 &1384994339
 GameObject:
   m_ObjectHideFlags: 0

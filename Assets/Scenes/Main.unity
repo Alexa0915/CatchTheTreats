@@ -1333,9 +1333,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSpawner
   goodItems:
   - {fileID: 5474657748502565130, guid: 11cee8c7ff74328459e2502fe9706c9a, type: 3}
+  - {fileID: 5474657748502565130, guid: 179fcad39e7bec24d94fc7ce23625df8, type: 3}
+  - {fileID: 5474657748502565130, guid: ff311af4f7d5d2f42aaffdb472d15a33, type: 3}
+  - {fileID: 5474657748502565130, guid: 092f857a32a802a4cbbb82bcdb64834f, type: 3}
+  - {fileID: 5474657748502565130, guid: 306afd645d1d2fd41af7caef6e829dfd, type: 3}
+  - {fileID: 5474657748502565130, guid: 4d9dfca2db0f3a64eb55c34ec70fd29c, type: 3}
+  - {fileID: 5474657748502565130, guid: 6956bf54683238141831994f575db513, type: 3}
   badItems:
   - {fileID: 4377085351949008559, guid: f43831f9628bacb478acf8a2bb64390a, type: 3}
   - {fileID: 3298319732759886681, guid: 7f6a8cb4ab5f54e4ebf34a827383fc15, type: 3}
+  - {fileID: 4377085351949008559, guid: 1b3c5975ddfddfc428524185233c04c2, type: 3}
   interval: 1.2
   badChance: 0.25
 --- !u!1 &1384994339

@@ -5,9 +5,11 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    static bool skipMenu = false;
 
     public TMP_Text livesText, missesText, coinsText, gameOverText;
     public GameObject restartButton;
+    public GameObject menuPanel;
     public int coinsPerFood = 10;
     public int maxLives = 3;
     public int maxMisses = 5;
@@ -27,6 +29,24 @@ public class GameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(false);
         restartButton.SetActive(false);
         UpdateUI();
+
+        if (skipMenu)
+        {
+            menuPanel.SetActive(false);
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            menuPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        skipMenu = false;
+    }
+
+    public void StartGame()
+    {
+        menuPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void CatchFood()
@@ -78,6 +98,7 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        skipMenu = true;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

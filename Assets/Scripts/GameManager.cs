@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text livesText, missesText, coinsText, gameOverText;
     public GameObject restartButton;
     public GameObject menuPanel;
+    public GameObject gameOverPanel;
     public int coinsPerFood = 10;
     public int maxLives = 3;
     public int maxMisses = 5;
@@ -26,8 +27,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         lives = maxLives;
-        gameOverText.gameObject.SetActive(false);
-        restartButton.SetActive(false);
+        gameOverPanel.SetActive(false);
         UpdateUI();
 
         if (skipMenu)
@@ -91,14 +91,20 @@ public class GameManager : MonoBehaviour
     {
         IsGameOver = true;
         gameOverText.text = "GAME OVER\n" + coins;
-        gameOverText.gameObject.SetActive(true);
-        restartButton.SetActive(true);
+        gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void Restart()
     {
         skipMenu = true;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void GoToMenu()
+    {
+        skipMenu = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

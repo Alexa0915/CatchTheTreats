@@ -15,6 +15,18 @@ public class GameManager : MonoBehaviour
     public int maxLives = 3;
     public int maxMisses = 5;
 
+    [Header("Звуки")]
+    public AudioClip catchSound;
+    public AudioClip hitSound;
+    public AudioClip bombSound;
+    public AudioClip gameOverSound;
+    public AudioClip musicClip;
+    [Range(0f, 1f)] public float soundVolume = 1f;
+    [Range(0f, 1f)] public float musicVolume = 0.4f;
+
+    AudioSource sfx;
+    AudioSource music;
+
     int coins, lives, misses;
     public bool IsGameOver { get; private set; }
 
@@ -22,6 +34,13 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Time.timeScale = 1f;
+
+        sfx = gameObject.AddComponent<AudioSource>();
+        sfx.playOnAwake = false;
+
+        music = gameObject.AddComponent<AudioSource>();
+        music.playOnAwake = false;
+        music.loop = true;
     }
 
     void Start()
@@ -29,6 +48,13 @@ public class GameManager : MonoBehaviour
         lives = maxLives;
         gameOverPanel.SetActive(false);
         UpdateUI();
+
+        if (musicClip != null)
+        {
+            music.clip = musicClip;
+            music.volume = musicVolume;
+            music.Play();
+        }
 
         if (skipMenu)
         {
@@ -43,6 +69,11 @@ public class GameManager : MonoBehaviour
         skipMenu = false;
     }
 
+    void PlaySound(AudioClip clip)
+    {
+        if (clip != null) sfx.PlayOneShot(clip, soundVolume);
+    }
+
     public void StartGame()
     {
         menuPanel.SetActive(false);
@@ -53,6 +84,7 @@ public class GameManager : MonoBehaviour
     {
         if (IsGameOver) return;
         coins += coinsPerFood;
+        PlaySound(catchSound);
         UpdateUI();
     }
 
@@ -60,6 +92,7 @@ public class GameManager : MonoBehaviour
     {
         if (IsGameOver) return;
         lives--;
+        PlaySound(hitSound);
         UpdateUI();
         if (lives <= 0) EndGame();
     }
@@ -68,6 +101,7 @@ public class GameManager : MonoBehaviour
     {
         if (IsGameOver) return;
         lives = 0;
+        PlaySound(bombSound);
         UpdateUI();
         EndGame();
     }
@@ -87,11 +121,15 @@ public class GameManager : MonoBehaviour
         coinsText.text = coins.ToString();
     }
 
-    void EndGame()
+        void EndGame()
     {
         IsGameOver = true;
+        PlayerPrefs.SetInt("TotalCoins", PlayerPrefs.GetInt("TotalCoins", 0) + coins);
+        PlayerPrefs.Save();
         gameOverText.text = "GAME OVER\n" + coins;
         gameOverPanel.SetActive(true);
+        music.Stop();
+        PlaySound(gameOverSound);
         Time.timeScale = 0f;
     }
 
